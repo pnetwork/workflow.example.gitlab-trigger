@@ -5,6 +5,10 @@
 * 透過 Marvin Trigger GitLab CI: 執行之後可以對指定的 gitlab repo 執行 CI pipeline
 * 接收 GitLab Webhook: 接收來自 GitLab CI 的 webhook，對網站做檢測，並透過 chatbot 送出檢測成功或是失敗 
 
+GitLab 範例可以參考 [https://gitlab.com/pentium_network/demo-project](https://gitlab.com/pentium_network/demo-project)
+當中的 GitLab CI 會在 master branch trigger，並且 deploy GitLab pages 到 [https://pentium_network.gitlab.io/demo-project/](https://pentium_network.gitlab.io/demo-project/)
+
+
 ## 透過 Marvin Trigger GitLab CI
 
 請參考 `core.workflow.example.trigger-gitlab` 這個 workflow
