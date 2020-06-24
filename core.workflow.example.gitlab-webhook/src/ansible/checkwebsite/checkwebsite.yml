@@ -1,0 +1,21 @@
+---
+  - name: check
+    gather_facts: no
+    hosts: hosts
+    tasks:
+    - debug:
+        msg: "Check URL"
+
+    - name: "Get Page"
+      local_action: 
+        module: uri
+        url: "{{ url }}"
+        method: GET
+        validate_certs: False
+        status_code: 200
+        timeout: 10
+        return_content: yes
+      register: output
+      
+    - debug:
+        var: output.content

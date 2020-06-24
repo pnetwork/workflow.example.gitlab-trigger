@@ -1,0 +1,32 @@
+id: notification
+schemaVersion: '0.2'
+version: '0.5.0'
+name: 传送讯息至指定频道
+title: 传送讯息至指定频道
+description: 選擇 bot 配對，傳送訊息至指定頻道
+namespace: network.pentium
+assets:
+- HOST
+inputs:
+  bot_infos:
+    $ref: pn_ids_chatpair
+  str_message:
+    name: Message context.
+    title: Message context.
+    description: The message used to send to the specified channel.
+    $ref: pn_sp_textarea_str
+required:
+- str_message
+outputs:
+  status:
+    description: The status of sending message.
+    type: string
+    enum:
+    - success
+    - failure
+    - no data
+    enumNames:
+    - 成功
+    - 失败
+    - 无资讯
+    example: success

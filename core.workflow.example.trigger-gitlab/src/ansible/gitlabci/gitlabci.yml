@@ -1,0 +1,18 @@
+---
+  - name: gitlabci
+    gather_facts: no
+    hosts: hosts
+    tasks:
+    - debug: 
+        msg: "GitLab CI"
+
+    - name: "Trigger Gitlab CI"
+      local_action: # "curl -X POST -F token=a3174f018ffa539f15e1c46b0048b6 -F ref=master "
+        module: uri 
+        url: "{{ url }}"
+        method: POST
+        validate_certs: False
+        status_code: 201
+        timeout: 10
+        body_format: form-urlencoded
+        body: "token={{ token }}&ref={{ ref }}" 

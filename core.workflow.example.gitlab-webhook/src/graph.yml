@@ -1,0 +1,114 @@
+$schema: 'http://json-schema.pentium.network/marvin-workflows/0.1/schema'
+graph:
+  metadata:
+    version: 0.0.0
+    title: '接收 GitLab webhook '
+    templateId: core.workflow.example.gitlab-webhook
+    description: ''
+    tags:
+      - 事件
+    author: core <U-fkb8x1fgk>
+  nodes:
+    - metadata:
+        sources: []
+        type: trigger
+        title: trigger
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 192
+            yAxis: 360
+      id: '0'
+    - metadata:
+        type: terminator
+        title: terminator
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 1104
+            yAxis: 360
+      id: '1'
+    - metadata:
+        type: action
+        title: 發送成功通知
+        description: ''
+        script:
+          id: notification
+        marvinProperties:
+          position:
+            xAxis: 840
+            yAxis: 360
+      id: '2'
+    - metadata:
+        type: action
+        title: 測試 GitLab Pages
+        description: ''
+        script:
+          id: checkwebsite
+        marvinProperties:
+          position:
+            xAxis: 432
+            yAxis: 360
+      id: '3'
+    - metadata:
+        type: selector
+        title: selector
+        marvinProperties:
+          position:
+            xAxis: 648
+            yAxis: 360
+      id: '4'
+    - metadata:
+        type: action
+        title: 發送失敗通知
+        description: ''
+        script:
+          id: notification
+        marvinProperties:
+          position:
+            xAxis: 840
+            yAxis: 480
+      id: '5'
+  edges:
+    - source: '2'
+      target: '1'
+    - source: '0'
+      target: '3'
+      metadata:
+        binding:
+          - property: url
+            value: 'https://pentium_network.gitlab.io/demo-project/'
+            type: string
+    - source: '3'
+      target: '4'
+    - source: '4'
+      target: '2'
+      metadata:
+        binding:
+          - property: str_message
+            value: Test Success
+            type: string
+          - property: bot_infos.0
+            value: CH-okb988bpx
+            type: string
+        filters:
+          property: 3.stdout
+          value: Hello
+          operator: regEx
+    - source: '4'
+      target: '5'
+      metadata:
+        binding:
+          - property: str_message
+            value: |
+              Test Fail
+            type: string
+          - property: bot_infos.0
+            value: CH-okb988bpx
+            type: string
+        filters:
+          property: 3.stdout
+          value: ^((?!Hello).)*
+          operator: regEx
+    - source: '5'
+      target: '1'

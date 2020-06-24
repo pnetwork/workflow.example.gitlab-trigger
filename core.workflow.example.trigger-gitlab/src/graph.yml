@@ -1,0 +1,47 @@
+$schema: 'http://json-schema.pentium.network/marvin-workflows/0.1/schema'
+graph:
+  metadata:
+    version: 0.0.0
+    title: Trigger GitLab CI
+    templateId: core.workflow.example.trigger-gitlab
+    description: "my workflow"
+    tags: []
+    author: trek
+  nodes:
+    - metadata:
+        sources: []
+        type: trigger
+        title: trigger
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 72
+            yAxis: 216
+      id: '0'
+    - metadata:
+        type: terminator
+        title: terminator
+        description: ''
+        script:
+          id: ''
+        marvinProperties:
+          position:
+            xAxis: 720
+            yAxis: 216
+      id: '1'
+    - metadata:
+        type: action
+        title: Trigger GitLab CI
+        description: ''
+        script:
+          id: gitlabci
+        marvinProperties:
+          position:
+            xAxis: 240
+            yAxis: 216
+      id: '2'
+  edges:
+    - source: '2'
+      target: '1'
+    - source: '0'
+      target: '2'

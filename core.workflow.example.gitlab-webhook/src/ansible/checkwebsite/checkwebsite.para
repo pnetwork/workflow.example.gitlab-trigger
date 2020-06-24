@@ -1,0 +1,19 @@
+---
+schemaVersion: '0.2'
+id: checkwebsite
+version: '0.1'
+title: ''
+name: checkwebsite
+assets:
+  - HOST
+description: ''
+inputs:
+  url:
+    descrption: url
+    title: URL
+    type: string
+  resourceIds:
+    $ref: pn_ids_host
+
+required:
+  - url

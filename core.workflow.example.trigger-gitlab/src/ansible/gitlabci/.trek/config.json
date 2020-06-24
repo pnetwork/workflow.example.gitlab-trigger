@@ -1,0 +1,8 @@
+{
+    "marvin_url": "",
+    "marvin_JWT": "",
+    "marvin_secret": "",
+    "local_inventory_file": "",
+    "input_event_path": "inputs/event.yml",
+    "envs": {}
+}
